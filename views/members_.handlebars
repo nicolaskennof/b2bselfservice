@@ -1,0 +1,68 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Cerrar sesión
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2>Bienvenido <span class="member-name"></span>{{contactName}}</h2>
+      </div>
+    </div>
+
+    <div class='row text-left'>
+      <h3>Datos del usuario</h3>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+      <ul>
+        <li>Correo electrónico registrado: <span id='userEmail'>{{email}}</span></li>
+        <li>Nombre de contacto: {{contactName}}</li>
+        <li>Teléfono: {{telephone}}</li>
+      </ul>
+      </div>
+    </div>
+    <div class='row text-left'>
+      <h3>Datos de facturación/Entrega</h3>
+    </div>
+    <div class='row'>
+      <div class='col-md-12'>
+      <ul>
+        <li>Nombre/Razón Social: <span id='userName'>{{name}}</span></li>
+        <li>Domicilio: {{street}} {{extNum}}, Int. {{intNum}}, Col. {{neighborhood}}, C.P. {{zipCode}}, {{city}}, {{state}}.</li>
+        <li>Registro Federal de Contribuyentes (RFC): {{taxId}}</li>
+      </ul>
+      </div>
+   </div>
+   <div class='row text-center'>
+      <h3 class='text-center'>Pedidos realizados</h3>
+    </div>
+        {{#each orders}}
+          <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header"><h5 class='text-center'>Pedido {{dataValues.newIndex}}</h5></div>
+            <div class="card-body">
+              <p class="card-title">Producto: {{dataValues.Product.name}}</p>
+              <p>Cantidad: {{dataValues.quantity}}</p>
+              <p>Precio unitario: ${{dataValues.Product.unitaryPrice}}</p>
+              <p>Subtotal: ${{dataValues.subtotal}}</p>
+              <p>IVA (16%): ${{dataValues.vat}}</p>
+              <p>Total: ${{dataValues.total}}</p>
+              <p>Dirección de entrega: {{dataValues.deliveryAddress}}</p>
+              <p>Estatus: {{dataValues.status}}</p>
+
+            </div>
+          </div>
+        {{/each}}
+
+        <div class='row text-center'>
+          <button type="button" class="btn btn-success" id='newOrder'>Levantar un nuevo pedido</button>
+        </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/members.js"></script>

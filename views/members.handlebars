@@ -1,0 +1,165 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/login"><img src="assets/img/Logo_Small.png" width="100px" height="100px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" style="color:#fff; hover:#37BFB8; font-size: 20px">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br><br>
+  <div class="card-content">
+    <div class="row mb-5">
+      <div class="col-md-7">
+        <h1 class="text-left text-white-50"><i class="fas fa-user-check"></i> Bienvenido, <span class="member-name"></span>{{contactName}}</h1>
+      </div>
+      <div class="col-md-5 text-right">
+        <!-- <button type="button" class="btn btn-info" id="newOrder" data-toggle="modal" data-target="#newOrder"><i class="fas fa-plus"></i>
+          Nuevo
+          Pedido</button> -->
+        <button type="button" class="btn btn-info" id='newOrder'><i class="fas fa-plus"></i>
+          Nuevo
+          Pedido</button>
+        <button type="button" class="btn btn-danger" id="add-btn" data-toggle="modal" data-target="#payment"><i class="far fa-credit-card"></i>
+          Datos
+          de pago</button>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="card-member mb-5">
+          <h5 class="card-header text-left"><i class="fas fa-file-alt"></i> Datos de facturación/entrega:</h5>
+          <div class="card-body">
+            <table class="table text-center">
+              <tbody id="tbody">
+                <tr>
+                  <td class="text-right"><b>Nombre/Razón Social: </b></td>
+                  <td class="text-left" id='userName'>{{name}}</td>
+                </tr>
+                <tr>
+                  <td class="text-right"><b>Domicilio: </b></td>
+                  <td class="text-left">{{street}} {{extNum}}, Int. {{intNum}},<br> Col. {{neighborhood}}, C.P.
+                    {{zipCode}},<br>
+                    {{city}}, {{state}}.</td>
+                </tr>
+                <tr>
+                  <td class="text-right"><b>RFC: </b></td>
+                  <td class="text-left">{{taxId}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card-member mb-5">
+          <h5 class="card-header text-left"><i class="fas fa-user-circle"></i> Tu perfil:</h5>
+          <div class="card-body">
+            <table class="table text-center">
+              <tbody id="tbody">
+                <tr>
+                  <td class="text-right"><b>Correo electrónico: </b></td>
+                  <td class="text-left"><span id='userEmail'>{{email}}</span></td>
+                </tr>
+                <tr>
+                  <td class="text-right"><b>Nombre de contacto: </b></th>
+                  <td class="text-left">{{contactName}}<br><br><br></td>
+                </tr>
+                <tr>
+                  <td class="text-right"><b>Teléfono: </b></th>
+                  <td class="text-left">{{telephone}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-12">
+        <div class="card-member mb-2">
+          <h5 class="card-header text-left"><i class="fas fa-beer"></i> Pedidos realizados: </h5>
+          <div class="card-body">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Nº Pedido</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio Unitario ($)</th>
+                  <th scope="col">Subtotal ($)</th>
+                  <th scope="col">IVA (16%)</th>
+                  <th scope="col">Total ($)</th>
+                  <th scope="col">Dirección Entrega</th>
+                  <th scope="col">Estatus</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                {{#each orders}}
+                <tr>
+                  <th>{{dataValues.newIndex}}</th>
+                  <th>{{dataValues.Product.name}}</th>
+                  <th>{{dataValues.quantity}}</th>
+                  <th>$ {{dataValues.Product.unitaryPrice}}</th>
+                  <th>$ {{dataValues.subtotal}}</th>
+                  <th>$ {{dataValues.vat}}</th>
+                  <th>$ {{dataValues.total}}</th>
+                  <th>{{dataValues.deliveryAddress}}</th>
+                  <th>{{dataValues.status}}</th>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Payment Information -->
+<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="paymentLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">DATOS DE PAGO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <br>
+        <ul class="no-decoration text-center">
+          <li><b>Banco:</b> Ve por Más</li>
+          <li><b>Nombre:</b> Origen 1537</li>
+          <li><b>Clabe:</b> 113180000002317760</li>
+        </ul>
+        <div class="text-center">
+          <img src="assets/img/vepormas.png">
+        </div>
+        <br>
+        <div class="text-right">
+          <button id="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/members.js"></script>
